@@ -1,19 +1,30 @@
-#!/usr/bin/env python3
+class Human:
+    species = "Homo sapiens"
 
-APPROVED_BREEDS = [
-    "Mastiff",
-    "Chihuahua",
-    "Corgi",
-    "Shar Pei",
-    "Beagle",
-    "French Bulldog",
-    "Pug",
-    "Pointer"
-]
+    def __init__(self, age):
+        self.age = age
+    
+    def get_age(self):
+        print("Retrieving age.")
+        return self._age
+    
+    def set_age(self, age):
+        if (type(age) in (int, float)) and (0 <= age <= 120):
+            print(f"Setting age to { age }.")
+            self._age = age
+
+        else:
+            print("Age must be a number between 0 and 120.")
+
+    age = property(get_age, set_age)
+
+guido = Human(age=67)
+guido.age = False
+guido.age
 
 class Dog:
 
-    def __init__(self, name="fido", breed="Pug"):
+    def __init__(self, name="fido", breed="pug"):
         self.name = name
         self.breed = breed
 
@@ -32,9 +43,8 @@ class Dog:
     def set_breed(self, breed):
         if breed in APPROVED_BREEDS:
             self._breed = breed
-        else: 
+        else:
             print("Breed must be in list of approved breeds.")
-    
 
     name = property(get_name, set_name)
     breed = property(get_breed, set_breed)
